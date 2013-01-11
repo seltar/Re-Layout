@@ -1,0 +1,29 @@
+{
+  "name": "Re-Layout",
+  "title": "Re-Layout",
+  "description": "Restack layouts - for responsive websites",
+  "version": "0.1.0",
+  "homepage": "https://github.com/seltar/Re-Layout",
+  "author": {
+    "name": "Yonas Sandbæk",
+    "email": "yonas.sandbaek@creuna.no",
+    "website": "creuna.no"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/seltar/Re-Layout.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seltar/Re-Layout/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/seltar/Re-Layout/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "keywords": []
+}

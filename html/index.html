@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <style>
+            body
+            {
+                font-family: Arial;
+                font-size: 10px;
+            }
+            #usage
+            {
+                margin: 0 0 30px;
+                padding: 0 0 30px;
+                border-bottom: solid 1px #DDD;
+                overflow: hidden;
+            }
+            .block
+            {
+                display: block;
+                float: left;
+                margin-right: 20px;
+            }
+            p{
+                padding: 0 0 0 10px;
+            }
+            #relayoutDebug
+            {
+                padding: 5px;
+                background: #000;
+                color: #FFF;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+            #relayoutDebug span
+            {
+                display: none;
+            }
+            .mobile #relayoutDebug span.mobile,
+            .tablet #relayoutDebug span.tablet,
+            .desktop #relayoutDebug span.desktop
+            {
+                display: block;
+            }
+
+            #container > div
+            {
+                margin: 5px;
+                padding: 5px;
+            }
+            #container > div > span
+            {
+                display: inline-block;
+                margin: 5px;
+                padding: 5px;
+                color: #FFF;
+                width: 100px;
+            }
+            .a
+            {
+                background: #FAA;
+            }
+            .b
+            {
+                background: #AAF;
+            }
+            .c
+            {
+                background: #AFA;
+            }
+            .d
+            {
+                background: #AFF;
+            }
+            span.a
+            {
+                background-color: #000;
+            }
+            span.b
+            {
+                background-color: #555;
+            }
+            span.c
+            {
+                background-color: #888;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div id="usage">
+            <div class="block">
+            <h1>Defaults:</h1>
+            <p>
+                <b>Breakpoints:</b><br /><br />
+                &nbsp;<b><i>mobile</i></b><br />
+                &nbsp;&nbsp;320 to 719<br /><br />
+                &nbsp;<b><i>tablet</i></b><br />
+                &nbsp;&nbsp;720 to 959<br /><br />
+                &nbsp;<b><i>desktop</i></b><br />
+                &nbsp;&nbsp;960 and up<br />
+            </p>
+            </div>
+            
+            <div class="block">
+            <h1>Usage:</h1>
+            <p>
+                <b>HTML:</b><br /><br />
+                &lt;div id="myElement"&gt;<br />
+                
+                &nbsp;&nbsp;&lt;div data-index-<i>mobile</i>="1"  data-index-<i>tablet</i>="2"&gt;&lt;/div&gt;<br />
+                &nbsp;&nbsp;&lt;div data-index-<i>mobile</i>="2"  data-index-<i>tablet</i>="1"&gt;&lt;/div&gt;<br />
+                &nbsp;&nbsp;&lt;div data-index-<i>mobile</i>="0"  data-index-<i>tablet</i>="0"&gt;&lt;/div&gt;<br />
+                
+                &lt;/div&gt;<br /><br />
+                
+                <b>Script:</b><br /><br />
+                $("#myElement").relayout();<br />
+            </p>
+            </div>
+            <div class="block">
+            <h2>options:</h2>
+            <p>
+                <b>Custom breakpoints:</b><br /><br />
+                $.relayout.defaults.breakpoints = {<br />&nbsp;&nbsp;smallest: 100,<br />&nbsp;&nbsp;smaller: 200,<br />&nbsp;&nbsp;small: 300,<br />&nbsp;&nbsp;medium: 400,<br />&nbsp;&nbsp;large: 500,<br />&nbsp;&nbsp;larger: 600,<br />&nbsp;&nbsp;largest: 700<br /> };
+            </p>
+            <p>
+                <b>Trigger programmatically:</b><br /><br />
+                $("#myElement").relayout("order",<i>width</i>);
+            </p>
+            </div>
+                
+        </div>
+        
+        <div id="relayoutDebug">
+            <div></div>
+            <span class="mobile">purple, green, cyan, pink</span>
+            <span class="tablet">cyan, pink, purple, green</span>
+            <span class="desktop">pink, purple, green, cyan</span>
+        </div>
+        <div id="container">
+            <div class="a" data-index-mobile="3" data-index-tablet="1">
+                <span class="a" data-index-mobile="0">Fourth on mobile</span>
+                <span class="b" data-index-tablet="0">Second on tablet</span>
+                <span class="c" data-index-desktop="0">First on desktop</span>
+            </div>
+            <div class="b" data-index-mobile="0" data-index-tablet="2">
+                <span class="a" data-index-mobile="0">First on mobile</span>
+                <span class="b" data-index-tablet="0">Third on tablet</span>
+                <span class="c" data-index-desktop="0">Second on desktop</span>
+            </div>
+            <div class="c" data-index-mobile="1" data-index-tablet="3">
+                <span class="a" data-index-mobile="0">Second on mobile</span>
+                <span class="b" data-index-tablet="0">Fourth on tablet</span>
+                <span class="c" data-index-desktop="0">Third on desktop</span>
+            </div>
+            <div class="d">
+                <span class="a" data-index-mobile="0">Third on mobile</span>
+                <span class="b" data-index-tablet="0">First on tablet</span>
+                <span class="c" data-index-desktop="0">Fourth on desktop</span>
+            </div>
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="../dist/Re-Layout.min.js"></script>
+        <script>
+            $(function(){
+                $("#container, #container > div").relayout();
+
+                // DEBUG CODE - display the currently selected breakpoint
+                $(window).resize(function(){
+                    var w = $(window).width();
+                    for(var i in $.relayout.defaults.breakpoints)
+                    {
+                        if(w > $.relayout.defaults.breakpoints[i])
+                        {
+                            $("#relayoutDebug div").html(i);
+                            $("body").removeClass("mobile tablet desktop").addClass(i);
+                        }else{
+                            break;
+                        }
+                    }
+                }).trigger("resize");
+            })
+        </script>
+    </body>
+</html>
